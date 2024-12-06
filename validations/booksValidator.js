@@ -17,8 +17,6 @@ export const validateUpdateBook = [
     .optional()
     .isString()
     .withMessage('Description must be a string'),
-
-  // Add validation for any other fields you might have
 ];
 
 
