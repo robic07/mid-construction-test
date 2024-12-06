@@ -7,4 +7,20 @@ export const validateCreateBook = [
   body('description').optional().isString().withMessage('Description must be a string')
 ];
 
-export const sanitizeCreateBook = [...validateCreateBook, validate]
+export const validateUpdateBook = [
+  body('title')
+    .optional()
+    .notEmpty()
+    .withMessage('Title cannot be empty'),
+  
+  body('description')
+    .optional()
+    .isString()
+    .withMessage('Description must be a string'),
+
+  // Add validation for any other fields you might have
+];
+
+
+export const sanitizeCreateBook = [...validateCreateBook, validate];
+export const sanitizeUpdateBook = [...validateUpdateBook, validate];

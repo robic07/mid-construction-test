@@ -9,11 +9,11 @@ import {
   deleteBook
 } from '#src/controllers/booksController';
 import authMiddleware from '#src/middleware/authMiddleware';
-import { sanitizeCreateBook } from '#src/validations/booksValidator';
+import { sanitizeCreateBook, sanitizeUpdateBook } from '#src/validations/booksValidator';
 
 const router = express.Router();
 router.route('/').get(getAllBooks).post(authMiddleware, sanitizeCreateBook, createBook);
-router.route('/:id').get(getOneBook).put(authMiddleware, updateBook);
+router.route('/:id').get(getOneBook).put(authMiddleware, sanitizeUpdateBook, updateBook);
 router.route('/:id/archive').delete(authMiddleware, softDeleteBook);
 router.route('/:id/restore').patch(authMiddleware, restoreBook);
 router.route('/:id/delete').delete(authMiddleware, deleteBook);
